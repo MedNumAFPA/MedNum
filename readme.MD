@@ -58,11 +58,12 @@ To get a local copy up and running, follow these steps.
 
     c. **Update the line** to connect to your local database. **Important:** The database must be named `mednum`.
 
-    Here is an example for a MariaDB/MySQL database:
+    Here is an example for a MySQL database on MacOS:
     ```env
     # Replace 'username' and 'password' with your actual database user and password.
     # Make sure the database 'mednum' exists on your local server.
-    DATABASE_URL="mysql://username:password@127.0.0.1:3306/mednum?serverVersion=11.8.2-MariaDB&charset=utf8mb4"
+    # If it doesn't exist check how to create it below on step 5.
+    DATABASE_URL="mysql://username:password@127.0.0.1:8889/mednum"
     ```
 
 5.  **Set up the database:**
