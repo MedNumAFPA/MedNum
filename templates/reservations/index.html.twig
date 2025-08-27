@@ -15,6 +15,7 @@
                 <th>PhoneNumber</th>
                 <th>FormationName</th>
                 <th>IsReminderActive</th>
+                <th>TimeSlots</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,6 +28,11 @@
                 <td>{{ reservation.email }}</td>
                 <td>{{ reservation.phoneNumber }}</td>
                 <td>{{ reservation.formationName }}</td>
+                <td>{{
+                    reservation.timeslot.fromTime|format_time(time_format='short', timezone='Europe/Paris', locale='fr') }}
+                    -
+                    {{ reservation.timeslot.toTime|format_time(time_format='short', timezone='Europe/Paris', locale='fr') }}
+                </td>
                 <td>{{ reservation.isReminderActive ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('app_reservations_show', {'id': reservation.id}) }}">show</a>
@@ -35,7 +41,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">No records found</td>
             </tr>
         {% endfor %}
         </tbody>
