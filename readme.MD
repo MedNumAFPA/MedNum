@@ -76,15 +76,22 @@ To get a local copy up and running, follow these steps.
     symfony console doctrine:migrations:migrate
     ```
 
-6.  **Build Frontend Assets (Tailwind CSS):**
-    The project's styling is managed by Tailwind CSS. You must compile the CSS files before the application will display correctly.
+6.  **Setup and Build Frontend Assets (Tailwind CSS):**
+    The project's styling is managed by Tailwind CSS. Follow these steps to get it running.
 
-    Run this command to build the assets once:
+    **a. First-Time Setup:**
+    After cloning the project, run the `init` command once to generate the necessary configuration file (`tailwind.config.js`).
+    ```sh
+    symfony console tailwind:init
+    ```
+
+    **b. Compiling CSS:**
+    You must compile the CSS files for the application to display correctly. Run this command to build the assets:
     ```sh
     symfony console tailwind:build
     ```
 
-    For convenience during development, you can run the builder in "watch" mode to automatically re-compile your CSS every time you save a file:
+    For convenience during development, you can use the `--watch` flag to automatically re-compile your CSS every time you save a file:
     ```sh
     symfony console tailwind:build --watch
     ```
