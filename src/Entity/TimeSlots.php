@@ -28,7 +28,7 @@ class TimeSlots
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTime $toTime = null;
 
-    #[ORM\OneToOne(inversedBy: 'timeSlots', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'timeSlots')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Workshops $workshop = null;
 
@@ -56,7 +56,6 @@ class TimeSlots
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -68,7 +67,6 @@ class TimeSlots
     public function setDate(\DateTime $date): static
     {
         $this->date = $date;
-
         return $this;
     }
 
@@ -80,7 +78,6 @@ class TimeSlots
     public function setFromTime(\DateTime $fromTime): static
     {
         $this->fromTime = $fromTime;
-
         return $this;
     }
 
@@ -92,7 +89,6 @@ class TimeSlots
     public function setToTime(\DateTime $toTime): static
     {
         $this->toTime = $toTime;
-
         return $this;
     }
 
@@ -101,10 +97,9 @@ class TimeSlots
         return $this->workshop;
     }
 
-    public function setWorkshop(Workshops $workshop): static
+    public function setWorkshop(?Workshops $workshop): static
     {
         $this->workshop = $workshop;
-
         return $this;
     }
 
@@ -122,19 +117,27 @@ class TimeSlots
             $this->reservations->add($reservation);
             $reservation->setTimeslot($this);
         }
-
         return $this;
     }
 
     public function removeReservation(Reservations $reservation): static
     {
         if ($this->reservations->removeElement($reservation)) {
-            // set the owning side to null (unless already changed)
             if ($reservation->getTimeslot() === $this) {
                 $reservation->setTimeslot(null);
             }
         }
+        return $this;
+    }
 
+    public function isTaken(): ?bool
+    {
+        return $this->isTaken;
+    }
+
+    public function setIsTaken(bool $isTaken): static
+    {
+        $this->isTaken = $isTaken;
         return $this;
     }
 }
