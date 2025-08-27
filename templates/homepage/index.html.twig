@@ -3,24 +3,36 @@
 {% block title %}Hello HomepageController!{% endblock %}
 
 {% block body %}
-    {% if app.user %}
-        <li class="nav-item">
-            <a href="{{ path('app_logout') }}" class="btn btn-sm btn-outline-light" onclick="return confirm('Es-tu sûr de vouloir te déconecter ?');">  Déconnexion</a>
+
+
+{% if app.user %}
+        <li class="list-none">
+            <a href="{{ path('app_logout') }}"
+               class="btn btn-sm btn-outline-light px-3 py-1 rounded bg-red-600 text-white hover:bg-red-700"
+               onclick="return confirm('Es-tu sûr de vouloir te déconnecter ?');">
+               Déconnexion
+            </a>
         </li>
-        {% else %}
-        <li class="nav-item">
-            <a class="btn btn-sm btn-outline-light" href="{{ path('app_register') }}">Inscription</a>
+    {% else %}
+        <li class="list-none">
+            <a href="{{ path('app_register') }}"
+               class="btn btn-sm btn-outline-light px-3 py-1 rounded bg-gray-700 text-white hover:bg-gray-600">
+               Inscription
+            </a>
         </li>
-        <li class="nav-item">
-            <a class="btn btn-sm btn-green" href="{{ path('app_login') }}">Connexion</a>
+        <li class="list-none">
+            <a href="{{ path('app_login') }}"
+               class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
+               Connexion
+            </a>
         </li>
     {% endif %}
-
+ 
 <div class="example-wrapper">
-    <h1 class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">Hello {{ controller_name }}! ✅</h1>
+    <h1 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Hello {{ controller_name }}! ✅</h1>
     <p>This friendly message is coming from:</p>
 
     <a href="" >
-
+        
 </div>
 {% endblock %}
