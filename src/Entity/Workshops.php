@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\WorkshopsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: WorkshopsRepository::class)]
@@ -25,8 +27,17 @@ class Workshops
     #[ORM\Column]
     private ?int $roomNumber = null;
 
-    #[ORM\OneToOne(mappedBy: 'workshop', cascade: ['persist', 'remove'])]
-    private ?TimeSlots $timeSlots = null;
+    /**
+     * @var Collection<int, TimeSlots>
+     */
+    // #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: TimeSlots::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: TimeSlots::class, cascade: ['persist'])]
+    private Collection $timeSlots;
+
+    public function __construct()
+    {
+        $this->timeSlots = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -41,7 +52,6 @@ class Workshops
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -53,7 +63,6 @@ class Workshops
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -65,7 +74,6 @@ class Workshops
     public function setMaxSlots(int $maxSlots): static
     {
         $this->maxSlots = $maxSlots;
-
         return $this;
     }
 
@@ -77,24 +85,33 @@ class Workshops
     public function setRoomNumber(int $roomNumber): static
     {
         $this->roomNumber = $roomNumber;
-
         return $this;
     }
 
-    public function getTimeSlots(): ?TimeSlots
+    /**
+     * @return Collection<int, TimeSlots>
+     */
+    public function getTimeSlots(): Collection
     {
         return $this->timeSlots;
     }
 
-    public function setTimeSlots(TimeSlots $timeSlots): static
+    public function addTimeSlot(TimeSlots $timeSlot): static
     {
-        // set the owning side of the relation if necessary
-        if ($timeSlots->getWorkshop() !== $this) {
-            $timeSlots->setWorkshop($this);
+        if (!$this->timeSlots->contains($timeSlot)) {
+            $this->timeSlots->add($timeSlot);
+            $timeSlot->setWorkshop($this);
         }
+        return $this;
+    }
 
-        $this->timeSlots = $timeSlots;
-
+    public function removeTimeSlot(TimeSlots $timeSlot): static
+    {
+        if ($this->timeSlots->removeElement($timeSlot)) {
+            if ($timeSlot->getWorkshop() === $this) {
+                $timeSlot->setWorkshop(null);
+            }
+        }
         return $this;
     }
 }

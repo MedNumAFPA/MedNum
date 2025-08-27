@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TimeSlots{% endblock %}
+
+{% block body %}
+    <h1>Edit TimeSlots</h1>
+
+    {{ include('time_slots/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_time_slots_index') }}">back to list</a>
+
+    {{ include('time_slots/_delete_form.html.twig') }}
+{% endblock %}
