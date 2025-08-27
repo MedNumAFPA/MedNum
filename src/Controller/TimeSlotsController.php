@@ -23,24 +23,40 @@ final class TimeSlotsController extends AbstractController
     }
 
     #[Route('/new', name: 'app_time_slots_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, TimeSlotsRepository $timeSlotsRepo): Response
     {
         $timeSlot = new TimeSlots();
         $form = $this->createForm(TimeSlotsType::class, $timeSlot);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($timeSlot->getFromTime() > $timeSlot->getToTime() || $timeSlot->getToTime() < $timeSlot->getFromTime()) {
+                $this->addFlash('danger', 'Please check the start and end time again!');
+                return $this->redirectToRoute('app_time_slots_index', [], Response::HTTP_SEE_OTHER);
+            }
+
+            $slot = $timeSlotsRepo->findBy(['fromTime' => $timeSlot->getFromTime(), 'toTime' => $timeSlot->getToTime(), 'date' => $timeSlot->getDate()]);
+            $slotName = $timeSlotsRepo->findBy(['name' => $timeSlot->getName()]);
+            if ($slot || $slotName) {
+                $message = $slot
+                    ? 'The time slot already exists!'
+                    : 'The name already exists. Please choose another!';
+
+                $this->addFlash('danger', $message);
+                return $this->redirectToRoute('app_time_slots_index', [], Response::HTTP_SEE_OTHER);
+            }
+
             $entityManager->persist($timeSlot);
             $entityManager->flush();
-
+            $this->addFlash('success', 'The time slot  has been added successfully!');
             return $this->redirectToRoute('app_time_slots_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('time_slots/new.html.twig', [
             'time_slot' => $timeSlot,
             'form' => $form,
         ]);
     }
+
 
     #[Route('/{id}', name: 'app_time_slots_show', methods: ['GET'])]
     public function show(TimeSlots $timeSlot): Response
@@ -58,6 +74,7 @@ final class TimeSlotsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('info', 'The time slot updated successfully!');
 
             return $this->redirectToRoute('app_time_slots_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -68,14 +85,13 @@ final class TimeSlotsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_time_slots_delete', methods: ['POST'])]
-    public function delete(Request $request, TimeSlots $timeSlot, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}/delete', name: 'app_time_slots_delete')]
+    public function delete(TimeSlots $timeSlot, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$timeSlot->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($timeSlot);
-            $entityManager->flush();
-        }
-
+        // dd("test");
+        $entityManager->remove($timeSlot);
+        $entityManager->flush();
+        $this->addFlash('danger', 'The time slot was deleted!');
         return $this->redirectToRoute('app_time_slots_index', [], Response::HTTP_SEE_OTHER);
     }
 }
