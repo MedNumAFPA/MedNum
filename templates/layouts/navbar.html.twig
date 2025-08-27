@@ -1,0 +1,61 @@
+<nav class="flex space-x-4 bg-gray-800 p-4">
+    {% if app.user %}
+        <li class="list-none">
+            <a href="{{ path('app_logout') }}"
+               class="btn btn-sm btn-outline-light px-3 py-1 rounded bg-red-600 text-white hover:bg-red-700"
+               onclick="return confirm('Es-tu sûr de vouloir te déconnecter ?');">
+               Déconnexion
+            </a>
+        </li>
+    {% else %}
+        <li class="list-none">
+            <a href="{{ path('app_register') }}"
+               class="btn btn-sm btn-outline-light px-3 py-1 rounded bg-gray-700 text-white hover:bg-gray-600">
+               Inscription
+            </a>
+        </li>
+        <li class="list-none">
+            <a href="{{ path('app_login') }}"
+               class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
+               Connexion
+            </a>
+        </li>
+    {% endif %}
+
+    <li class="list-none">
+        <a href="{{ path('app_homepage') }}"
+           class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
+           Accueil
+        </a>
+    </li>
+    <li class="list-none">
+        <a href="{{ path('app_qr_code') }}"
+           class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
+           Qr-code
+        </a>
+    </li>
+    <li class="list-none">
+        <a href="{{ path('app_reservations_index') }}"
+           class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
+           Reservations
+        </a>
+    </li>
+    <li class="list-none">
+        <a href="{{ path('app_time_slots_index') }}"
+           class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
+           TimeSlots
+        </a>
+    </li>
+    <li class="list-none">
+        <a href="{{ path('app_user_index') }}"
+           class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
+           Utilisateur
+        </a>
+    </li>
+    <li class="list-none">
+        <a href="{{ path('app_workshops_index') }}"
+           class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
+           Workshops
+        </a>
+    </li>
+</nav>
