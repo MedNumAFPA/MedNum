@@ -1,4 +1,34 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="flex items-center">
+	{{ form_label(form.name) }}
+	{{ form_widget(form.name, {"attr": {"class": "form-control", "placeholder": "Time slot name"}}) }}
+</div>
+<div class="flex items-center">
+
+	{{ form_label(form.date) }}
+	{{ form_widget(form.date, {"attr": {"class": "form-control"}}) }}
+</div>
+
+
+<div class="flex items-center">
+
+	{{ form_label(form.fromTime) }}
+	{{ form_widget(form.fromTime, {"attr": {"class": "form-control"}}) }}
+</div>
+
+
+<div class="flex items-center">
+
+	{{ form_label(form.toTime) }}
+	{{ form_widget(form.toTime, {"attr": {"class": "form-control"}}) }}
+</div>
+
+
+<div class="flex items-center">
+	{{ form_label(form.workshop) }}
+	{{ form_widget(form.workshop, {"attr": {"class": "form-control form-combo"}})  }}
+</div>
+
+
+<button class="button bg-[var(--primary)]">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

@@ -18,10 +18,6 @@ class WorkshopsType extends AbstractType
             ->add('description')
             ->add('maxSlots')
             ->add('roomNumber')
-            ->add('timeSlots', EntityType::class, [
-                'class' => TimeSlots::class,
-                'choice_label' => 'id',
-            ])
         ;
     }
 

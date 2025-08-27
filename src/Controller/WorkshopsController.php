@@ -22,7 +22,7 @@ final class WorkshopsController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_workshops_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_workshops_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $workshop = new Workshops();
@@ -71,7 +71,7 @@ final class WorkshopsController extends AbstractController
     #[Route('/{id}', name: 'app_workshops_delete', methods: ['POST'])]
     public function delete(Request $request, Workshops $workshop, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$workshop->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $workshop->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($workshop);
             $entityManager->flush();
         }
