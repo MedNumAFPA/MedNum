@@ -1,4 +1,24 @@
-{{ form_start(form) }}
+{# {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }} #}
+
+
+{{ form_start(form) }}
+
+
+    {{ form_label(form.email, 'Email', {'label_attr': {'class': 'block font-medium text-gray-700'}}) }}
+    {{ form_widget(form.email, {'attr': {'class': 'w-full  shadow-sm focus:border-blue-500 '}}) }} 
+
+    {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'text-gray-700'}}) }}
+    {{ form_widget(form.password, {'attr': {'class': 'w-full  shadow-sm focus:border-blue-500 '}}) }} 
+
+    
+    <div class="mt-4 flex justify-end space-x-2">
+        <button class="btn mt-4 px-2 py-1 bg-blue-600 text-white font-medium hover:bg-blue-300">
+            {{ button_label|default('Ajouter') }}
+        </button>
+        <a href="{{ path('app_user_index') }}" class="mt-4 px-2 py-1 bg-blue-600 text-white font-medium hover:bg-blue-300">Retour</a>
+    <div class="mt-4 flex justify-end space-x-2">
+
 {{ form_end(form) }}
