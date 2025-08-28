@@ -3,9 +3,11 @@
 {% block title %}New Workshops{% endblock %}
 
 {% block body %}
-    <h1>Create new Workshops</h1>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold mb-6">Ajouter une nouvelle Atelier</h1>
 
-    {{ include('workshops/_form.html.twig') }}
-
-    <a href="{{ path('app_workshops_index') }}">back to list</a>
+        <div class="bg-white shadow-md p-6">
+            {{ include('workshops/_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}
