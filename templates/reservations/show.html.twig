@@ -12,11 +12,11 @@
                 <td>{{ reservation.id }}</td>
             </tr>
             <tr>
-                <th>Firstname</th>
+                <th>Prenom</th>
                 <td>{{ reservation.firstname }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>Nom</th>
                 <td>{{ reservation.lastname }}</td>
             </tr>
             <tr>
@@ -24,23 +24,23 @@
                 <td>{{ reservation.email }}</td>
             </tr>
             <tr>
-                <th>PhoneNumber</th>
+                <th>Numéro de téléphone</th>
                 <td>{{ reservation.phoneNumber }}</td>
             </tr>
             <tr>
-                <th>FormationName</th>
+                <th>Nom de la formation</th>
                 <td>{{ reservation.formationName }}</td>
             </tr>
             <tr>
-                <th>IsReminderActive</th>
-                <td>{{ reservation.isReminderActive ? 'Yes' : 'No' }}</td>
+                <th>Veux être rappelé de l'atelier</th>
+                <td>{{ reservation.isReminderActive ? 'Oui' : 'Non' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_reservations_index') }}">back to list</a>
+    <a href="{{ path('app_reservations_index') }}">Revenir a la liste</a>
 
-    <a href="{{ path('app_reservations_edit', {'id': reservation.id}) }}">edit</a>
+    <a href="{{ path('app_reservations_edit', {'id': reservation.id}) }}">Éditer</a>
 
     {{ include('reservations/_delete_form.html.twig') }}
 {% endblock %}

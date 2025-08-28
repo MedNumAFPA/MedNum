@@ -16,9 +16,6 @@ class TimeSlots
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $date = null;
 
@@ -48,16 +45,6 @@ class TimeSlots
         return $this->id;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): static
-    {
-        $this->name = $name;
-        return $this;
-    }
 
     public function getDate(): ?\DateTime
     {
@@ -127,17 +114,6 @@ class TimeSlots
                 $reservation->setTimeslot(null);
             }
         }
-        return $this;
-    }
-
-    public function isTaken(): ?bool
-    {
-        return $this->isTaken;
-    }
-
-    public function setIsTaken(bool $isTaken): static
-    {
-        $this->isTaken = $isTaken;
         return $this;
     }
 }
