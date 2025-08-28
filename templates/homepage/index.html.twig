@@ -4,12 +4,25 @@
 {% endblock %}
 
 {% block body %}
+	<div class="main-container bg-white">
+		<div class="max-h-[50vh] bg-gradient-to-tr from-[#b0b1b3] via-[#22c55e] to-[#4ade80]">
+			<twig:Container>
+				<twig:Card>
+					<div class="flex flex-col items-center justify-center">
+						<h1 class="text-[var(--primary)] font-extrabold text-center lg:text-6xl">Wellcome to
+						</h1>
+						<img class=" max-w-[40%] mb-6" src="{{ asset('images/logo-txt.svg') }}" alt="">
+						<img class="max-w-[30%] mb-6" src="{{ asset('images/logo.svg') }}" alt="">
+						<p class="text-[var(--foreground)] text-center mb-6">Click here if you want to take an appointment with out expert</p>
+						<twig:Link href="{{ path('app_reservations_new') }}" color="primary">Make a reservation</twig:Link>
+					</div>
 
 
-	{% include "layouts/navbar.html.twig" %}
-	<div class="container">
-		<div class="min-w-[100%] min-h-[50%] bg-amber-200"></div>
-		<h1>Wellcome To MEDNUM</h1>
-		<p>This friendly message is coming from:</p>
-		<a href=""></div>
-	{% endblock %}
+				</twig:Card>
+
+			</twig:Container>
+		</div>
+
+
+	</div>
+{% endblock %}

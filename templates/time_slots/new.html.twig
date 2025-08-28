@@ -4,12 +4,13 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<div class="card justify-start ">
-			<h1>Créer un nouveau créneau</h1>
+
+	<twig:Container>
+		<twig:Card>
+			<h1>Create new TimeSlots</h1>
 			{{ include('time_slots/_form.html.twig') }}
-			<a href="{{ path('app_time_slots_index') }}">Revenir a la liste</a>
-		</div>
-	</div>
+			<a href="{{ path('app_time_slots_index') }}" class="mt-3">back to list</a>
+		</twig:Card>
+	</twig:Container>
 
 {% endblock %}

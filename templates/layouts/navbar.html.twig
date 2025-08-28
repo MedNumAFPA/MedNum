@@ -1,51 +1,63 @@
-<nav class="flex space-x-4 p-4">
-	{% if app.user %}
-		<li class="list-none">
-			<a href="{{ path('app_logout') }}" class="btn btn-sm btn-outline-light px-3 py-1 rounded bg-red-600 text-white hover:bg-red-700" onclick="return confirm('Es-tu sûr de vouloir te déconnecter ?');">
-				Déconnexion
-			</a>
-		</li>
-	{% else %}
-		<li class="list-none">
-			<a href="{{ path('app_register') }}" class="btn btn-sm btn-outline-light px-3 py-1 rounded bg-gray-700 text-white hover:bg-gray-600">
-				Inscription
-			</a>
-		</li>
-		<li class="list-none">
-			<a href="{{ path('app_login') }}" class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
-				Connexion
-			</a>
-		</li>
-	{% endif %}
+<nav class=" flex-row p-4 justify-between items-center md:flex lg:flex hidden">
+	<div class="flex space-x-2 flex-1 items-center">
+		<img class=" max-w-[75px]" src="{{ asset('images/logo.svg') }}" alt="">
+		<img class=" max-w-[75px]" src="{{ asset('images/logo-txt.svg') }}" alt="">
+	</div>
+	<div class="flex flex-6 justify-between">
+		<div class="flex space-x-4 items-center">
+			<li class="list-none">
+				<a href="{{ path('app_homepage') }}" class=" ">
+					Accueil
+				</a>
+			</li>
+			<li class="list-none">
+				<a href="{{ path('app_qr_code') }}" class=" ">
+					Qr-code
+				</a>
+			</li>
+			<li class="list-none">
+				<a href="{{ path('app_reservations_index') }}" class=" ">
+					Reservations
+				</a>
+			</li>
+			<li class="list-none">
+				<a href="{{ path('app_time_slots_index') }}" class=" ">
+					TimeSlots
+				</a>
+			</li>
+			<li class="list-none">
+				<a href="{{ path('app_user_index') }}" class=" ">
+					Utilisateur
+				</a>
+			</li>
+			<li class="list-none">
+				<a href="{{ path('app_workshops_index') }}" class=" ">
+					Workshops
+				</a>
+			</li>
+		</div>
+		<div class="flex space-x-4">
+			{% if app.user %}
+				<li class="list-none">
+					<twig:Link href="{{ path('app_logout') }}" class="button bg-[var(--danger)]" onclick="return confirm('Es-tu sûr de vouloir te déconnecter ?');">
+						Déconnexion
+					</twig:Link>
+				</li>
+			{% else %}
+				<li class="list-none">
+					<twig:Link href="{{ path('app_register') }}" color="primary">
+						Inscription
+					</twig:Link>
+				</li>
+				<li class="list-none">
+					<twig:Link href="{{ path('app_login') }}" color="info">
 
-	<li class="list-none">
-		<a href="{{ path('app_homepage') }}" class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
-			Accueil
-		</a>
-	</li>
-	<li class="list-none">
-		<a href="{{ path('app_qr_code') }}" class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
-			Qr-code
-		</a>
-	</li>
-	<li class="list-none">
-		<a href="{{ path('app_reservations_index') }}" class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
-			Reservations
-		</a>
-	</li>
-	<li class="list-none">
-		<a href="{{ path('app_time_slots_index') }}" class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
-			TimeSlots
-		</a>
-	</li>
-	<li class="list-none">
-		<a href="{{ path('app_user_index') }}" class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
-			Utilisateur
-		</a>
-	</li>
-	<li class="list-none">
-		<a href="{{ path('app_workshops_index') }}" class="btn btn-sm btn-green px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700">
-			Workshops
-		</a>
-	</li>
+
+						Connexion
+					</twig:Link>
+				</li>
+			{% endif %}
+		</div>
+	</div>
+
 </nav>

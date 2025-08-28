@@ -20,11 +20,13 @@
 </div>
 
 
-<div class="flex items-center">
+<div class="flex items-center mb-3">
 	{{ form_label(form.workshop) }}
 	{{ form_widget(form.workshop, {"attr": {"class": "form-control form-combo"}})  }}
 </div>
 
+<twig:Link href="form.submit()" color="primary">
+	<button>Save</button>
+</twig:Link>
 
-<button class="button bg-[var(--primary)]">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}

@@ -1,32 +1,24 @@
 @import "tailwindcss";
 
-:root {
-    --background: #ffffff;
-    --foreground: oklch(0.32 0 0);
-    --muted: oklch(0.98 0 0);
-    --muted-foreground: oklch(0.55 0.02 264.41);
-    --primary: #064789;
-    --danger: #dd191c;
-    --success: #22bb33;
-    --info: #ffd900;
+@theme {
+    --color-background: #ffffff;
+    --color-foreground: oklch(0.32 0 0);
+    --color-muted: oklch(0.98 0 0);
+    --color-muted-foreground: hsl(220, 8%, 46%);
+    --color-primary: #60bf19;
+    --color-danger: #dd191c;
+    --color-success: #22bb33;
+    --color-info: #ffd900;
 }
 
-h1 {
-    font-size: 2.5rem;
-}
-
-h2 {
-    font-size: 1.5rem;
-}
-
-p {
-    font-size: 1.2rem;
-}
-
-label {
-    font-size: 1.2rem;
-    width: 100px;
-}
+@source inline("bg-primary");
+@source inline("bg-danger");
+@source inline("bg-info");
+@source inline("bg-success");
+@source inline("bg-muted");
+@source inline("bg-muted-foreground");
+@source inline("bg-foreground");
+@source inline("bg-background");
 
 input,
 .form-combo {
@@ -35,109 +27,40 @@ input,
     outline: none;
     background: #ffffff;
     color: #000000;
-    border: 1px solid var(--primary);
+    border: 1px solid;
     border-radius: 5px;
     margin: 10px;
+    width: 100%;
 }
 
-body {
+label {
+    font-size: 18px;
+    color: #000000;
+    margin: 10px;
+    width: 25%;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    min-width: 100vw;
-}
-
-form {
+/* form {
     display: flex;
     flex-direction: column;
     margin: 10px;
-
-    padding: 40px;
+    padding: 20px;
 }
 .form-control {
     width: 100%;
-}
+} */
 
-.card {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    border-radius: 16px;
-    box-shadow: 2px 7px 13px 0px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    width: 50%;
-    height: 50%px;
-    margin: 10px;
-    border: 1px solid var(--foreground);
-    padding: 40px;
-}
-.card-body {
-    background-color: #fffcfc;
-    padding: 24px;
-    width: 100%;
-}
+/* 
 
-.card-title {
-    color: #000000;
-    font-weight: bold;
-    font-size: 24px;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 10px;
-    padding: 0px;
-}
-.card-text {
-    line-height: 1.4;
-    margin: 10px 0px 0px 0px;
-    font-size: 17px;
-    color: #000000;
-}
-
-.button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-        rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
-    color: #fff;
-    cursor: pointer;
-    font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
-        Ubuntu, sans-serif;
-    font-size: 100%;
-    height: 44px;
-    padding: 25px;
-    text-align: center;
-}
-.button:disabled {
-    cursor: default;
-}
-
-.button:hover {
-}
-
-table.customTable {
-    width: 100%;
-    background-color: #ffffff;
-    border-collapse: collapse;
-    border-style: solid;
-    color: #000000;
-    margin: 30px 0;
-}
-
-table.customTable td,
-table.customTable th {
+td,
+th {
     border-style: solid;
     border-width: 1px;
     padding: 5px;
     padding: 5px;
 }
 
-table.customTable thead {
+thead {
     background-color: var(--foreground);
     color: #fff;
-}
+} */
