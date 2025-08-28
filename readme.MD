@@ -1,4 +1,4 @@
-# MedNum - Digital Mediation Workshop Booking System
+# AFPA Connect - Digital Mediation Workshop Booking System
 
 A simple web application for booking time slots at digital mediation workshops.
 
@@ -31,12 +31,12 @@ To get a local copy up and running, follow these steps.
 
 1.  **Clone the repository:**
     ```sh
-    git clone https://github.com/your-username/MedNum.git
+    git clone https://github.com/your-username/AFPAconnect.git
     ```
 
 2.  **Navigate into the project directory:**
     ```sh
-    cd MedNum
+    cd AFPAconnect
     ```
 
 3.  **Install PHP dependencies with Composer:**
@@ -56,14 +56,14 @@ To get a local copy up and running, follow these steps.
 
     b. **Open the `.env.local` file** and find the `DATABASE_URL` line.
 
-    c. **Update the line** to connect to your local database. **Important:** The database must be named `mednum`.
+    c. **Update the line** to connect to your local database. **Important:** The database must be named `afpaconnect`.
 
     Here is an example for a MySQL database on MacOS:
     ```env
     # Replace 'username' and 'password' with your actual database user and password.
-    # Make sure the database 'mednum' exists on your local server.
+    # Make sure the database 'afpaconnect' exists on your local server.
     # If it doesn't exist check how to create it below on step 5.
-    DATABASE_URL="mysql://username:password@127.0.0.1:8889/mednum"
+    DATABASE_URL="mysql://username:password@127.0.0.1:8889/afpaconnect"
     ```
 
 5.  **Set up the database:**

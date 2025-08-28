@@ -3,35 +3,62 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+     <div class="container mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold mb-6">Gestion des Utilisateur</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="min-w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Id</th>
+                        <th scope="col" class="px-6 py-3">Email</th>
+                        <th scope="col" class="px-6 py-3">Roles</th>
+                        <th scope="col" class="px-6 py-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td class="px-6 py-4">{{ user.id }}</td>
+                        <td class="px-6 py-4 text-xs">{{ user.email }}</td>
+                        {# <td "px-6 py-4 text-xs">{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+                        <td class="px-6 py-4">
+                        {% for role in user.roles %}
+                            {% if role == 'ROLE_ADMIN' %}
+                                <span class="px-1 pt-1 bg-red-600 text-white text-xs" disabled> Admin</span>
+                            {% elseif role == 'ROLE_USER' %}
+                                <span class="px-1 pt-1 bg-green-800 text-white text-xs" disabled> User</span>
+                            {% elseif role == 'ROLE_EDITOR' %}
+                                <span class="px-1 pt-1 bg-yellow-600 text-white text-xs" disabled> Editeur</span>
+                            {% else %}
+                                {{ role|capitalize }}
+                            {% endif %}
+                        {% endfor %}
+                        </td>
+                        <td class="px-6 py-4 space-x-2">
+                            <a href="{{ path('app_user_edit', {'id': user.id}) }}">✏️</a>
+                            {# <a href="{{ path('app_user_delete', {'id': user.id}) }}">❌</a> #}
+                            {{ include('user/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
+        <div class="mt-6">
+            <a href="{{ path('app_user_new') }}"
+                class=" px-2 py-1 bg-blue-500 text-white  hover:bg-blue-300">
+                Ajouter
+            </a>
+            <a href="{{ path('app_dash_board_admin') }}" 
+                class="mx-4 px-2 py-1 bg-blue-500 text-white font-medium hover:bg-blue-300">
+                Retour
+            </a>
+        </div>
+    </div>
 {% endblock %}

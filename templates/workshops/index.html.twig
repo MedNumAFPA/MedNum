@@ -32,7 +32,8 @@
                         <td class="px-6 py-4 text-xs">{{ workshop.roomNumber }}</td>
                         <td class="px-6 py-4 space-x-2">
                             <a href="{{ path('app_workshops_edit', {'id': workshop.id}) }}" >✏️</a>
-                            <a href="{{ path('app_workshops_delete', {'id': workshop.id}) }}">❌</a>
+                            {# <a href="{{ path('app_workshops_delete', {'id': workshop.id}) }}">❌</a> #}
+                             {{ include('workshops/_delete_form.html.twig') }} 
                         </td>
                     </tr>
                 {% else %}
@@ -42,15 +43,19 @@
                         </td>
                     </tr>
                 {% endfor %}
-                
+
                 </tbody>
             </table>
         </div>
 
         <div class="mt-6">
             <a href="{{ path('app_workshops_new') }}" 
-               class="inline-block px-2 py-1 bg-blue-500 text-white  hover:bg-blue-300">
-               Create new
+               class="px-2 py-1 bg-blue-500 text-white  hover:bg-blue-300">
+               Ajouter
+            </a>
+            <a href="{{ path('app_dash_board_admin') }}" 
+                class="mx-4 px-2 py-1 bg-blue-500 text-white font-medium hover:bg-blue-300">
+                Retour
             </a>
         </div>
     </div>
