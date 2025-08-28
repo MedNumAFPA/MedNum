@@ -12,7 +12,6 @@
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Name</th>
 						<th>From</th>
 						<th>To</th>
 						<th>Date</th>
@@ -24,7 +23,6 @@
 					{% for time_slot in time_slots %}
 						<tr>
 							<td>{{ time_slot.id }}</td>
-							<td>{{ time_slot.name }}</td>
 							<td>{{ time_slot.fromTime ? time_slot.fromTime|date('H:i:s') : '' }}</td>
 							<td>{{ time_slot.toTime ? time_slot.toTime|date('H:i:s') : '' }}</td>
 							<td>{{ time_slot.date ? time_slot.date|date('Y-m-d') : '' }}</td>
