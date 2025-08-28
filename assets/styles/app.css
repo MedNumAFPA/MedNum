@@ -5,10 +5,10 @@
     --foreground: oklch(0.32 0 0);
     --muted: oklch(0.98 0 0);
     --muted-foreground: oklch(0.55 0.02 264.41);
-    --primary: #4734d8;
-    --danger: #e74c3c;
-    --success: #2ecc71;
-    --info: #f1c40f;
+    --primary: #064789;
+    --danger: #dd191c;
+    --success: #22bb33;
+    --info: #ffd900;
 }
 
 h1 {

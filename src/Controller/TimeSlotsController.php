@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/time/slots')]
+#[Route('/timeslots')]
 final class TimeSlotsController extends AbstractController
 {
     #[Route(name: 'app_time_slots_index', methods: ['GET'])]
@@ -36,13 +36,8 @@ final class TimeSlotsController extends AbstractController
             }
 
             $slot = $timeSlotsRepo->findBy(['fromTime' => $timeSlot->getFromTime(), 'toTime' => $timeSlot->getToTime(), 'date' => $timeSlot->getDate()]);
-            $slotName = $timeSlotsRepo->findBy(['name' => $timeSlot->getName()]);
-            if ($slot || $slotName) {
-                $message = $slot
-                    ? 'The time slot already exists!'
-                    : 'The name already exists. Please choose another!';
-
-                $this->addFlash('danger', $message);
+            if ($slot) {
+                $this->addFlash('danger', 'The time slot already exists!');
                 return $this->redirectToRoute('app_time_slots_index', [], Response::HTTP_SEE_OTHER);
             }
 
