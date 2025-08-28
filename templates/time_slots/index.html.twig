@@ -4,48 +4,61 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<twig:Container>
 		{% include "layouts/flash_message.html.twig" %}
-		<div class="card">
-			<table class="w-full text-center customTable">
-				<h1 class="mb-9">Time Slots</h1>
-				<thead>
+		<twig:Card>
+			<h1 class="mb-9">Time Slots</h1>
+			<twig:Table>
+				<thead class="uppercase border-b-2 border-neutral-600">
+
 					<tr>
-						<th>Id</th>
-						<th>From</th>
-						<th>To</th>
-						<th>Date</th>
-						<th>Workshop</th>
-						<th class="flex flex-row justify-center">Actions</th>
+						<th scope="col" class="px-2 py-4">Id</th>
+
+						<th scope="col" class="px-2 py-4">From</th>
+
+						<th scope="col" class="px-2 py-4">To</th>
+
+						<th scope="col" class="px-2 py-4">Date</th>
+
+						<th scope="col" class="px-2 py-4">Workshop</th>
+
+						<th class="flex flex-row justify-center px-6 py-4">Actions</th>
+
 					</tr>
 				</thead>
-				<tbody>
+				<tbody name="body">
 					{% for time_slot in time_slots %}
-						<tr>
-							<td>{{ time_slot.id }}</td>
-							<td>{{ time_slot.fromTime ? time_slot.fromTime|date('H:i:s') : '' }}</td>
-							<td>{{ time_slot.toTime ? time_slot.toTime|date('H:i:s') : '' }}</td>
-							<td>{{ time_slot.date ? time_slot.date|date('Y-m-d') : '' }}</td>
-							<td>{{ time_slot.workshop.name }}</td>
-							<td>
+						<tr class="border-b dark:border-neutral-600">
+							<td class="px-2  py-4">{{ time_slot.id }}</td>
+
+							<td class="px-2 py-4">{{ time_slot.fromTime ? time_slot.fromTime|date('H:i:s') : '' }}</td>
+
+							<td class="px-2  py-4">{{ time_slot.toTime ? time_slot.toTime|date('H:i:s') : '' }}</td>
+
+							<td class="px-2  py-4">{{ time_slot.date ? time_slot.date|date('Y-m-d') : '' }}</td>
+
+							<td class="px-2  py-4">{{ time_slot.workshop.name }}</td>
+
+
+							<td
+								class="px-6 py-4">
+
 								{# <a href="{{ path('app_time_slots_show', {'id': time_slot.id}) }}">Show</a> #}
-								<div class="flex flex-row justify-center">
+								<div class="flex flex-row justify-center space-x-3">
+									<twig:Link href="{{ path('app_time_slots_edit', {'id': time_slot.id}) }}" color="info">Edit</twig:Link>
+									{# <a href="{{ path('app_time_slots_delete', {'id': time_slot.id}) }}" class="button bg-[var(--danger)] mx-3" onclick="return confirm('Are you sure you want to delete this slot?');">Delete</a> #}
 
-									<a href="{{ path('app_time_slots_edit', {'id': time_slot.id}) }}" class="button bg-[var(--info)] mx-3">Edit</a>
-									<a href="{{ path('app_time_slots_delete', {'id': time_slot.id}) }}" class="button bg-[var(--danger)] mx-3" onclick="return confirm('Are you sure you want to delete this slot?');">Delete</a>
-								</div>
-
-
+									{{ include('time_slots/_delete_form.html.twig') }}</div>
 							</td>
 						</tr>
-					{% else %}
-						<tr>
-							<td colspan="6">no records found</td>
-						</tr>
-					{% endfor %}
+					</td>
 				</tbody>
-			</table>
-			<a href="{{ path('app_time_slots_new') }}" class="button bg-[var(--primary)]">Create new</a>
-		</div>
-	</div>
-{% endblock %}
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="6">no records found</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</twig:Table>
+<twig:Link href="{{ path('app_time_slots_new') }}" color="primary">Create new</twig:Link></twig:Card></twig:Container>{% endblock %}
