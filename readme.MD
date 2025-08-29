@@ -96,7 +96,24 @@ To get a local copy up and running, follow these steps.
     symfony console tailwind:build --watch
     ```
 
-7.  **Run the application:**
+7.  **Configuring the Mailer:**
+    To enable the application to send emails for confirmations or reminders, follow these steps.
+
+    **a. Set Your Mailer DSN:**
+    After cloning the project, open your `.env.local` file and update the `MAILER_DSN` variable with your SMTP provider's credentials.
+    ```env
+    MAILER_DSN="smtp://username:password@ssl0.ovh.net:465"
+    ```
+
+    **b. Run the Messenger Worker:**
+    This application sends emails asynchronously. You must run a worker in a separate terminal to process the queue and send the emails.
+    ```sh
+    symfony console messenger:consume async -vv
+    ```
+
+    This command runs continuously in the background. For convenience during development, you should keep this terminal open while testing email functionality.
+
+8.  **Run the application:**
     You can use the built-in Symfony web server to run the project locally.
     ```sh
     symfony serve
