@@ -35,6 +35,8 @@ final class TimeSlotsController extends AbstractController
                 return $this->redirectToRoute('app_time_slots_index', [], Response::HTTP_SEE_OTHER);
             }
 
+//            dd($form);
+
             $slot = $timeSlotsRepo->findBy(['fromTime' => $timeSlot->getFromTime(), 'toTime' => $timeSlot->getToTime(), 'date' => $timeSlot->getDate()]);
             if ($slot) {
                 $this->addFlash('danger', 'The time slot already exists!');

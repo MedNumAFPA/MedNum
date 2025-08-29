@@ -25,8 +25,11 @@
 	{{ form_widget(form.workshop, {"attr": {"class": "form-control form-combo"}})  }}
 </div>
 
-<twig:Link href="form.submit()" color="primary">
-	<button>Save</button>
-</twig:Link>
+{%  dump(form) %}
+
+
+<twig:Button color="primary">
+{#	<button>Save</button>#}Save
+</twig:Button>
 
 {{ form_end(form) }}
