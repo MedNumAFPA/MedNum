@@ -7,10 +7,9 @@
 
 	<twig:Container>
 		<twig:Card>
-			<h1>Create new TimeSlots</h1>
+			<twig:PageTitle>Créer un nouveau créneau</twig:PageTitle>
 			{{ include('time_slots/_form.html.twig') }}
-			<a href="{{ path('app_time_slots_index') }}" class="mt-3">back to list</a>
+			<a href="{{ path('app_time_slots_index') }}" class="mt-3">Revenir a la liste</a>
 		</twig:Card>
 	</twig:Container>
-
 {% endblock %}

@@ -1,4 +1,4 @@
-<nav class=" flex-row p-4 justify-between items-center md:flex lg:flex hidden">
+<nav class=" flex-row p-4 justify-between items-center md:flex lg:flex hidden shadow-md">
 	<div class="flex space-x-2 flex-1 items-center">
 		<img class=" max-w-[75px]" src="{{ asset('images/logo.svg') }}" alt="">
 		<img class=" max-w-[75px]" src="{{ asset('images/logo-txt.svg') }}" alt="">
@@ -35,16 +35,16 @@
 					Workshops
 				</a>
 			</li>
-            <li class="list-none">
-                <a href="{{ path('app_dashboard_admin') }}" class=" ">
-                    Admin Dashboard
-                </a>
-            </li>
+			<li class="list-none">
+				<a href="{{ path('app_dashboard_admin') }}" class=" ">
+					Admin Dashboard
+				</a>
+			</li>
 		</div>
-		<div class="flex space-x-4">
+		<div class="flex space-x-3">
 			{% if app.user %}
 				<li class="list-none">
-					<twig:Link href="{{ path('app_logout') }}" color="danger" class="button bg-[var(--danger)]" onclick="return confirm('Es-tu sûr de vouloir te déconnecter ?');">
+					<twig:Link href="{{ path('app_logout') }}" color="danger" onclick="return confirm('Es-tu sûr de vouloir te déconnecter ?');">
 						Déconnexion
 					</twig:Link>
 				</li>
@@ -56,8 +56,6 @@
 				</li>
 				<li class="list-none">
 					<twig:Link href="{{ path('app_login') }}" color="info">
-
-
 						Connexion
 					</twig:Link>
 				</li>

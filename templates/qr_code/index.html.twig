@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello QrCodeController!{% endblock %}
+{% block title %}Hello QrCodeController!
+{% endblock %}
 
 {% block body %}
 
 
-<div class="example-wrapper">
-    <h1>Acceuil de page de Qr Code</h1>
+	<twig:Container>
+		<twig:Card>
+			<twig:PageTitle>Acceuil de page de Qr Code</twig:PageTitle>
 
-<img src="{{ path('qr_code_reservation') }}" alt="QR Code réservation">
-    </ul>
-</div>
+			<img class="cover max-w-[50%] self-center border-2" src="{{ path('qr_code_reservation') }}" alt="QR Code réservation">
+		</twig:Card>
+	</twig:Container>
+
+
 {% endblock %}

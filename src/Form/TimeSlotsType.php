@@ -20,6 +20,8 @@ class TimeSlotsType extends AbstractType
             ->add('workshop', EntityType::class, [
                 'class' => Workshops::class,
                 'choice_label' => 'name',
+                'attr' => ['class' => 'form-combo']
+
             ])
         ;
     }

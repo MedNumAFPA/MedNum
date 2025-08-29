@@ -23,6 +23,7 @@ class ReservationsType extends AbstractType
             ->add('timeslot', EntityType::class, [
                 'class' => TimeSlots::class,
                 'choice_label' => 'id',
+                'attr' => ['class' => 'form-combo']
             ])
         ;
     }
