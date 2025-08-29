@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}New User
+{% endblock %}
 
 {% block body %}
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-2xl font-bold mb-6">Ajouter un nouveau utilisateur</h1>
-        <div class="bg-white shadow-md p-6">
-            {{ include('user/_form.html.twig') }}
-        </div>
-    </div>
+	<twig:Container>
+		<twig:Card>
+			<twig:PageTitle class="text-2xl font-bold mb-6">Ajouter un nouveau utilisateur</twig:PageTitle>
+			{{ include('user/_form.html.twig') }}
+		</twig:Card>
+	</twig:Container>
 {% endblock %}

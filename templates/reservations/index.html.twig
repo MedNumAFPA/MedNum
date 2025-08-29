@@ -1,51 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Index des réservations{% endblock %}
+{% block title %}Index des réservations
+{% endblock %}
 
 {% block body %}
-    <h1>Index des réservations</h1>
+	<twig:Container>
+		{% include "layouts/flash_message.html.twig" %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Numéro téléphone</th>
-                <th>Nom de la formation</th>
-                <th>Veux être rappelé de l'atelier</th>
-                <th>Créneau</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for reservation in reservations %}
-            <tr>
-                <td>{{ reservation.id }}</td>
-                <td>{{ reservation.firstname }}</td>
-                <td>{{ reservation.lastname }}</td>
-                <td>{{ reservation.email }}</td>
-                <td>{{ reservation.phoneNumber }}</td>
-                <td>{{ reservation.formationName }}</td>
-                <td>{{
+		<twig:Card>
+
+			<twig:PageTitle>Index des réservations</twig:PageTitle>
+
+			<twig:Table>
+				<thead class="uppercase border-b-2 border-neutral-600">
+					<th scope="col" class="px-2 py-4">Id</th>
+					<th scope="col" class="px-2 py-4">Prénom</th>
+					<th scope="col" class="px-2 py-4">Nom</th>
+					<th scope="col" class="px-2 py-4">Email</th>
+					<th scope="col" class="px-2 py-4">Numéro téléphone</th>
+					<th scope="col" class="px-2 py-4">Nom de la formation</th>
+					<th scope="col" class="px-2 py-4">Veux être rappelé de l'atelier</th>
+					<th scope="col" class="px-2 py-4">Créneau</th>
+					<th scope="col" class="px-2 py-4">Actions</th>
+				</thead>
+			</tr>
+		</thead>
+		<tbody>
+			{% for reservation in reservations %}
+				<tr class="border-b dark:border-neutral-600"></tr>
+
+				<td class="px-2  py-4">{{ reservation.id }}</td>
+				<td class="px-2  py-4">{{ reservation.firstname }}</td>
+				<td class="px-2  py-4">{{ reservation.lastname }}</td>
+				<td class="px-2  py-4">{{ reservation.email }}</td>
+				<td class="px-2  py-4">{{ reservation.phoneNumber }}</td>
+				<td class="px-2  py-4">{{ reservation.formationName }}</td>
+				<td class="px-2  py-4">{{
                     reservation.timeslot.fromTime|format_time(time_format='short', timezone='Europe/Paris', locale='fr') }}
-                    -
-                    {{ reservation.timeslot.toTime|format_time(time_format='short', timezone='Europe/Paris', locale='fr') }}
-                </td>
-                <td>{{ reservation.isReminderActive ? 'Oui' : 'Non' }}</td>
-                <td>
-                    <a href="{{ path('app_reservations_show', {'id': reservation.id}) }}">Voir</a>
-                    <a href="{{ path('app_reservations_edit', {'id': reservation.id}) }}">Éditer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">Il n'existe aucune réservation.</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_reservations_new') }}">Créer une nouvelle</a>
-{% endblock %}
+					-
+					{{ reservation.timeslot.toTime|format_time(time_format='short', timezone='Europe/Paris', locale='fr') }}
+				</td>
+				<td class="px-2  py-4">{{ reservation.isReminderActive ? 'Oui' : 'Non' }}</td>
+				<td class="px-2  py-4">
+					<div class="flex flex-row justify-center space-x-3">
+						<twig:Link color="info" href="{{ path('app_reservations_show', {'id': reservation.id}) }}">Voir</twig:Link>
+						<twig:Link color="danger" href="{{ path('app_reservations_delete', {'id': reservation.id}) }}">Supprimer</twig:Link>
+					</div>
+					{# <twig:Link color="info" href=" {{ path('app_reservations_edit', {'id': reservation.id} ) }}">Éditer</twig:Link> #}
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="8">Il n'existe aucune réservation.</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</twig:Table>
+<twig:Link color="primary" href="{{ path('app_reservations_new') }}">Créer une nouvelle</twig:Link></twig:Card></twig:Container>{% endblock %}

@@ -4,9 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Éditer créneau</h1>
+	<twig:Container>
+		<twig:Card>
 
-	{{ include('time_slots/_form.html.twig', {'button_label': 'Mettre a jour'}) }}
-
-	<a href="{{ path('app_time_slots_index') }}">Revenir a la liste</a>
+			<twig:PageTitle>Éditer créneau</twig:PageTitle>
+			{{ include('time_slots/_form.html.twig', {'button_label': 'Mettre a jour'}) }}
+			<a href="{{ path('app_time_slots_index') }}" class="mt-5">Revenir a la liste</a>
+		</twig:Card>
+	</twig:Container>
 {% endblock %}

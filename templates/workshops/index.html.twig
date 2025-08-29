@@ -1,62 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Workshops index{% endblock %}
+{% block title %}Workshops index
+{% endblock %}
 
 {% block body %}
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-2xl font-bold mb-6">Workshops index</h1>
+	<twig:Container>
+		{% include "layouts/flash_message.html.twig" %}
+		<twig:Card>
+			<twig:PageTitle>Index des Atelier</twig:PageTitle>
+			<twig:Table>
+				<thead class="uppercase border-b-2 border-neutral-600">
+					<tr>
+						<th scope="col" class="px-2 py-4">Id</th>
+						<th scope="col" class="px-2 py-4">Name</th>
+						<th scope="col" class="px-2 py-4">Description</th>
+						<th scope="col" class="px-2 py-4">Max Slots</th>
+						<th scope="col" class="px-2 py-4">Room Number</th>
+						<th scope="col" class="px-2 py-4">Actions</th>
+					</tr>
+				</thead>
+				<tbody name="body">
+					{% for workshop in workshops %}
+						<tr class="border-b dark:border-neutral-600"></tr>
+						<td class="px-2 py-4">{{ workshop.id }}</td>
+						<td class="px-2 py-4 font-medium text-gray-900">
+							<a href="{{ path('app_workshops_show', {'id': workshop.id}) }}" class=" hover:text-blue-600">
+								{{ workshop.name }}
+							</a>
+						</td>
+						<td class="px-2 py-4">{{ workshop.description }}</td>
+						<td class="px-2 py-4 text-xs">{{ workshop.maxSlots }}</td>
+						<td class="px-2 py-4 text-xs">{{ workshop.roomNumber }}</td>
+						<td class="px-2 py-4 space-x-2">
+							<div class="flex flex-row justify-center space-x-3">
 
-        <div class="overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="min-w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">Id</th>
-                        <th scope="col" class="px-6 py-3">Name</th>
-                        <th scope="col" class="px-6 py-3">Description</th>
-                        <th scope="col" class="px-6 py-3">Max Slots</th>
-                        <th scope="col" class="px-6 py-3">Room Number</th>
-                        <th scope="col" class="px-6 py-3">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for workshop in workshops %}
-                    <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="px-6 py-4">{{ workshop.id }}</td>
-                        <td class="px-6 py-4 font-medium text-gray-900">
-                            <a href="{{ path('app_workshops_show', {'id': workshop.id}) }}" class=" hover:text-blue-600">
-                                {{ workshop.name }}
-                            </a>
-                        </td>
-                        <td class="px-6 py-4">{{ workshop.description }}</td>
-                        <td class="px-6 py-4 text-xs">{{ workshop.maxSlots }}</td>
-                        <td class="px-6 py-4 text-xs">{{ workshop.roomNumber }}</td>
-                        <td class="px-6 py-4 space-x-2">
-                            <a href="{{ path('app_workshops_edit', {'id': workshop.id}) }}" >✏️</a>
-                            {# <a href="{{ path('app_workshops_delete', {'id': workshop.id}) }}">❌</a> #}
-                             {{ include('workshops/_delete_form.html.twig') }}
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="6" class="px-6 py-4 text-center text-gray-500">
-                            No records found
-                        </td>
-                    </tr>
-                {% endfor %}
 
-                </tbody>
-            </table>
-        </div>
+								<twig:Link color="info" href="{{ path('app_workshops_edit', {'id': workshop.id}) }}">Modifier</twig:Link>
+								{{ include('workshops/_delete_form.html.twig') }}
+							</div>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6" class="px-6 py-4 text-center text-gray-500">
+							No records found
+						</td>
+					</tr>
+				{% endfor %}
 
-        <div class="mt-6">
-            <a href="{{ path('app_workshops_new') }}"
-               class="px-2 py-1 bg-blue-500 text-white  hover:bg-blue-300">
-               Ajouter
-            </a>
-            <a href="{{ path('app_dashboard_admin') }}"
-                class="mx-4 px-2 py-1 bg-blue-500 text-white font-medium hover:bg-blue-300">
-                Retour
-            </a>
-        </div>
-    </div>
-{% endblock %}
+			</tbody>
+		</twig:Table>
+
+		<twig:Link color="primary" href="{{ path('app_workshops_new') }}" class="px-2 py-1 bg-blue-500 text-white  hover:bg-blue-300">
+			Ajouter</twig:Link>
+		<a href="{{ path('app_dashboard_admin') }}" class="m-5">
+			Retour</a>
+	</twig:Card>
+</twig:Container>{% endblock %}

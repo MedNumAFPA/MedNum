@@ -1,64 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}User index
+{% endblock %}
 
 {% block body %}
-     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-2xl font-bold mb-6">Gestion des Utilisateur</h1>
+	<twig:Container>
+		<twig:Card>
+			<twig:PageTitle>Gestion des Utilisateur</twig:PageTitle>
+			<twig:Table class="min-w-full text-sm text-left text-gray-500">
+				<thead class="uppercase border-b-2 border-neutral-600">
+					<tr>
+						<th scope="col" class="px-2 py-4">Id</th>
+						<th scope="col" class="px-2 py-4">Email</th>
+						<th scope="col" class="px-2 py-4">Roles</th>
+						<th scope="col" class="px-2 py-4">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr class="border-b dark:border-neutral-600"></tr>
+						<td class="px-2  py-4">{{ user.id }}</td>
 
-        <div class="overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="min-w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">Id</th>
-                        <th scope="col" class="px-6 py-3">Email</th>
-                        <th scope="col" class="px-6 py-3">Roles</th>
-                        <th scope="col" class="px-6 py-3">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for user in users %}
-                    <tr>
-                        <td class="px-6 py-4">{{ user.id }}</td>
-                        <td class="px-6 py-4 text-xs">{{ user.email }}</td>
-                        {# <td "px-6 py-4 text-xs">{{ user.roles ? user.roles|json_encode : '' }}</td> #}
-                        <td class="px-6 py-4">
-                        {% for role in user.roles %}
-                            {% if role == 'ROLE_ADMIN' %}
-                                <span class="px-1 pt-1 bg-red-600 text-white text-xs" disabled> Admin</span>
-                            {% elseif role == 'ROLE_USER' %}
-                                <span class="px-1 pt-1 bg-green-800 text-white text-xs" disabled> User</span>
-                            {% elseif role == 'ROLE_EDITOR' %}
-                                <span class="px-1 pt-1 bg-yellow-600 text-white text-xs" disabled> Editeur</span>
-                            {% else %}
-                                {{ role|capitalize }}
-                            {% endif %}
-                        {% endfor %}
-                        </td>
-                        <td class="px-6 py-4 space-x-2">
-                            <a href="{{ path('app_user_edit', {'id': user.id}) }}">✏️</a>
-                            {# <a href="{{ path('app_user_delete', {'id': user.id}) }}">❌</a> #}
-                            {{ include('user/_delete_form.html.twig') }}
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="5">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+						<td class="px-2  py-4">{{ user.email }}</td>
 
-        <div class="mt-6">
-            <a href="{{ path('app_user_new') }}"
-                class=" px-2 py-1 bg-blue-500 text-white  hover:bg-blue-300">
-                Ajouter
-            </a>
-            <a href="{{ path('app_dashboard_admin') }}"
-                class="mx-4 px-2 py-1 bg-blue-500 text-white font-medium hover:bg-blue-300">
-                Retour
-            </a>
-        </div>
-    </div>
-{% endblock %}
+						{# <td "px-6 py-4 text-xs">{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+						<td class="px-2  py-4">
+
+							{% for role in user.roles %}
+								{% if role == 'ROLE_ADMIN' %}
+									<span class="px-1 pt-1 bg-red-600 text-white text-s" disabled>
+										Admin</span>
+								{% elseif role == 'ROLE_USER' %}
+									<span class="mx-1 p-2 bg-green-800 rounded-full text-white text-xs" disabled>
+										User</span>
+								{% elseif role == 'ROLE_EDITOR' %}
+									<span class="px-1 pt-1 bg-yellow-600 text-white text-s" disabled>
+										Editeur</span>
+								{% else %}
+									{{ role|capitalize }}
+								{% endif %}
+							{% endfor %}
+						</td>
+						<td class="px-2  py-4">
+							<div class="flex flex-row justify-center space-x-3">
+								<twig:Link color="info" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</twig:Link>
+
+								{# <a href="{{ path('app_user_delete', {'id': user.id}) }}">❌</a> #}
+								{{ include('user/_delete_form.html.twig') }}</div>
+
+						</td>
+					</tbody>
+				</tbody>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="5">no records found</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</twig:Table>
+<twig:Link color="primary" href="{{ path('app_user_new') }}" class=" px-2 py-1 bg-blue-500 text-white  hover:bg-blue-300">Ajouter</twig:Link>
+<a class="mt-5" href="{{ path('app_dashboard_admin') }}">Retour</a></twig:Card></twig:Container>{% endblock %}

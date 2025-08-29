@@ -1,5 +1,8 @@
 {{ form_start(form) }}
-<div class="flex items-center">
+{{ form_widget(form) }}
+
+
+{# <div class="flex items-center">
 
 	{{ form_label(form.date) }}
 	{{ form_widget(form.date, {"attr": {"class": "form-control"}}) }}
@@ -23,10 +26,12 @@
 <div class="flex items-center mb-3">
 	{{ form_label(form.workshop) }}
 	{{ form_widget(form.workshop, {"attr": {"class": "form-control form-combo"}})  }}
-</div>
+</div> #}
 
-<twig:Button color="primary">
-{#	<button>Save</button>#}Save
+<twig:Button
+	color="primary">
+	{#	<button>Save</button>#}
+	Sauvegarder
 </twig:Button>
 
 {{ form_end(form) }}
