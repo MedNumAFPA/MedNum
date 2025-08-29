@@ -35,11 +35,16 @@
 					Workshops
 				</a>
 			</li>
+            <li class="list-none">
+                <a href="{{ path('app_dashboard_admin') }}" class=" ">
+                    Admin Dashboard
+                </a>
+            </li>
 		</div>
 		<div class="flex space-x-4">
 			{% if app.user %}
 				<li class="list-none">
-					<twig:Link href="{{ path('app_logout') }}" class="button bg-[var(--danger)]" onclick="return confirm('Es-tu sûr de vouloir te déconnecter ?');">
+					<twig:Link href="{{ path('app_logout') }}" color="danger" class="button bg-[var(--danger)]" onclick="return confirm('Es-tu sûr de vouloir te déconnecter ?');">
 						Déconnexion
 					</twig:Link>
 				</li>
