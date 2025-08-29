@@ -20,7 +20,10 @@ class MailController extends AbstractController
 
         $email = (new Email())
             ->from('me@arnaudrabel.com')
-            ->to('arnaud.rabel@gmail.com')
+//            ->to('arnaud.rabel@gmail.com')
+//            ->to('amine.elkhal@icloud.com')
+//            ->to('shamashan@gmail.com')
+            ->to('mounir.sebti33@gmail.com')
             ->subject('Test Email from Symfony!')
             ->text('This is the plain text version of the email.')
             ->html('<p>This is the <strong>HTML</strong> version of the email. If you see this, it worked!</p>');
